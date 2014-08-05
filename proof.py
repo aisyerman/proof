@@ -23,13 +23,8 @@ class User(Base):
     fullname = Column(String)
     password = Column(String)
 
-    def __init__(self, name, fullname, password):
-        self.name = name
-        self.fullname = fullname
-        self.password = password
-
     def __repr__(self):
-        return "<User ('%s', '%s', '%s')>" % (self.name, self.fullname, self.password)
+        return "<User (name='%s', fullname='%s', password='%s')>" % (self.name, self.fullname, self.password)
 
 User.__table__
 
@@ -38,7 +33,7 @@ User.__mapper__
 Base.metadata.create_all(engine)
 
 
-ed_user = User('ed', 'Ed Jones', 'edspassword')
+ed_user = User(name='ed', fullname='Ed Jones', password='edspassword')
 ed_user.name
 
 ed_user.fullname
@@ -62,9 +57,9 @@ print our_user
 ed_user is our_user
 
 session.add_all([
-    User('wendy', 'Wendy Williams', 'foobar'),
-    User('ger', 'German Roccasalva', 'pencoso'),
-    User('nati', 'Natalia Daldi', 'blah')])
+    User(name='wendy', fullname='Wendy Williams', password='foobar'),
+    User(name='ger', fullname='German Roccasalva', password='pencoso'),
+    User(name='nati', fullname='Natalia Daldi', password='blah')])
 
 ed_user.password = 'lapenca'
 
